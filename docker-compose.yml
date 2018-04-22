@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  nginx-unit:
+    image: nginx/unit:1.0-full
+    ports:
+      - 8500:8500
+      - 8080:8080
+    volumes:
+       - ./conf:/root/json
+       - ./run:/var/run
+       - go-executable:/www/server/bin
+  api:
+    build: 
+      context: ./api
+    ports:
+      - 3000:3000
+    volumes:
+      - go-executable:/build
+      - .:/go/src/github.com/gcoka/nginx-unit-go-api
+      - ./build:/build
+    command: ["make", "start"]
+
+
+
+volumes:
+  go-executable:
