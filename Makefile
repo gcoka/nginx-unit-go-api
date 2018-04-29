@@ -9,3 +9,13 @@ start:
 .PHONY: dep
 dep:
 	dep ensure
+
+list-listener:
+	docker-compose exec nginx-unit curl --unix-socket /var/run/control.unit.sock http://127.0.0.1
+
+update-go:
+	docker-compose exec nginx-unit curl -X PUT -d @/root/json/api.json --unix-socket /var/run/control.unit.sock http://127.0.0.1/
+
+update-php:
+	docker-compose exec nginx-unit curl -X PUT -d @/root/json/php.json --unix-socket /var/run/control.unit.sock http://127.0.0.1/
+

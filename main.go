@@ -10,7 +10,10 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "<h1>Hello NGINX Unit</h1>")
 	})
-	port := 3000
-	fmt.Printf("server start listening port %v", port)
-	unit.ListenAndServe(fmt.Sprintf(":%v", port), nil)
+	port := 8000
+	fmt.Printf("server start listening port %v\n", port)
+	err := unit.ListenAndServe(fmt.Sprintf(":%v", port), nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
