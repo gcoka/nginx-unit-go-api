@@ -1,0 +1,13 @@
+{
+  "applications": {
+    "go_api": {
+      "type": "go",
+      "executable": "/www/server/bin/goapi"
+    }
+  },
+  "listeners": {
+    "*:8500": {
+      "application": "go_api"
+    }
+  }
+}
